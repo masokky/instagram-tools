@@ -2,7 +2,7 @@
 <br/>
 
 ## How to install (DEFAULT or BASIC USAGE)
-	* git clone https://github.com/ikiganteng/bot-igeh.git
+	* git clone https://github.com/asokky/instagram-tools.git
 	* cd bot-igeh
 	* unzip node_modules.zip
 	* ls
@@ -14,7 +14,7 @@
 	* Download GIT for Windows (https://git-scm.com/download/) *Choose WIN & 32bit/64bit
 	* Download NodeJS (https://nodejs.org/en/download/) *Choose .msi & 32bit/64bit
 	* INSTALL GIT for Windows & NodeJS
-	* Download File on Github (https://github.com/ikiganteng/bot-igeh.git)
+	* Download File on Github (https://github.com/asokky/instagram-tools.git)
 	* Extract File bot-igeh and enter the folder
 	* Right Click on Mouse, Then Select "Git Bash Here" (Make sure you are in the bot-igeh folder!!!)
 	* Then type: unzip node_modules.zip
@@ -28,7 +28,7 @@
 	* Open Termux and Wait for Automatic Install of Termux.
 	* pkg install git
 	* pkg install nodejs
-	* git clone https://github.com/ikiganteng/bot-igeh.git
+	* git clone https://github.com/asokky/instagram-tools.git
 	* cd bot-igeh
 	* unzip node_modules.zip
 	* ls
@@ -46,7 +46,7 @@
 	* sudo yum -y install nodejs
 
 	=========== Basic Usage ==============
-	* git clone https://github.com/ikiganteng/bot-igeh.git
+	* git clone https://github.com/asokky/instagram-tools.git
 	* cd bot-igeh
 	* unzip node_modules.zip
 	* ls
@@ -82,7 +82,7 @@
 	* nvm install 10.7.0
 
 	=========== Basic Usage ==============
-	* git clone https://github.com/ikiganteng/bot-igeh.git
+	* git clone https://github.com/asokky/instagram-tools.git
 	* cd bot-igeh
 	* unzip node_modules.zip
 	* nvm use 10.7.0
@@ -93,29 +93,29 @@
 <br/>
 
 ## INFORMATION:
-	* dellallphoto			"DELETE ALL POST IG"				(WORK & TESTED)
-	* fl					"SELECTED WITH TARGET IG"			(WORK & TESTED)
-	* fah					"SELECTED WITH HASTAG IG"			(WORK & TESTED)
-	* fftsleep				"SELECTED WITH TARGET IG"			(WORK & TESTED)
-	* fftdm					"SELECTED WITH TARGET IG"			(WORK & TESTED)
-	* fftauto				"SELECTED WITH TARGET IG"			(WORK & TESTED)
-	* fft					"SELECTED WITH TARGET IG"			(WORK & TESTED)
-	* fftold				"SELECTED WITH TARGET IG"			(WORK & TESTED)
-	* fftasli				"SELECTED WITH TARGET IG"			(WORK & TESTED)
-	* flaauto				"SELECTED WITH LOCATION IG"			(WORK & TESTED)
-	* flmauto				"SELECTED WITH MEDIA IG"			(WORK & TESTED)
-	* unfollall				"UNFOLOW ALL FOLLOWING IG"			(WORK & TESTED)
-	* unfollnotfollback		"UNFOLLOW NOT FOLLOWBACK IG"		(WORK & TESTED)
-	* botlike				"LIKE/LOVE TIMELINE IG"				(WORK & TESTED)
-	* botlike2				"LIKE/LOVE TIMELINE IG"				(WORK & TESTED)
-	* bomlike				"BOM LIKE POST TARGET"				(WORK & TESTED)
-	* bomkomen				"BOM KOMEN POST TARGET"				(WORK & TESTED)
-	* likekomen				"SELECTED WITH POST TARGET"			(WORK & TESTED)
-	* komenlike				"SELECTED WITH HASTAG TARGET"		(WORK & TESTED)
-	* cdl					"SELECTED WITH TARGET IG"			(WORK & TESTED)
-	* cek					"CHECK USERNAME IG TARGET"			(WORK & TESTED)
-	* RMTPeople				"REPOST MEDIA TARGET BY PEOPLE"		(WORK & TESTED)
-	* RMTHashtag			"REPOST MEDIA TARGET BY HASHTAG"	(WORK & TESTED)
+	* dellallphoto		"DELETE ALL POST IG"			(WORK & TESTED)
+	* fl			"SELECTED WITH TARGET IG"		(WORK & TESTED)
+	* fah			"SELECTED WITH HASTAG IG"		(WORK & TESTED)
+	* fftsleep		"SELECTED WITH TARGET IG"		(WORK & TESTED)
+	* fftdm			"SELECTED WITH TARGET IG"		(WORK & TESTED)
+	* fftauto		"SELECTED WITH TARGET IG"		(WORK & TESTED)
+	* fft			"SELECTED WITH TARGET IG"		(WORK & TESTED)
+	* fftold		"SELECTED WITH TARGET IG"		(WORK & TESTED)
+	* fftasli		"SELECTED WITH TARGET IG"		(WORK & TESTED)
+	* flaauto		"SELECTED WITH LOCATION IG"		(WORK & TESTED)
+	* flmauto		"SELECTED WITH MEDIA IG"		(WORK & TESTED)
+	* unfollall		"UNFOLOW ALL FOLLOWING IG"		(WORK & TESTED)
+	* unfollnotfollback	"UNFOLLOW NOT FOLLOWBACK IG"		(WORK & TESTED)
+	* botlike		"LIKE/LOVE TIMELINE IG"			(WORK & TESTED)
+	* botlike2		"LIKE/LOVE TIMELINE IG"			(WORK & TESTED)
+	* bomlike		"BOM LIKE POST TARGET"			(WORK & TESTED)
+	* bomkomen		"BOM KOMEN POST TARGET"			(WORK & TESTED)
+	* likekomen		"SELECTED WITH POST TARGET"		(WORK & TESTED)
+	* komenlike		"SELECTED WITH HASTAG TARGET"		(WORK & TESTED)
+	* cdl			"SELECTED WITH TARGET IG"		(WORK & TESTED)
+	* cek			"CHECK USERNAME IG TARGET"		(WORK & TESTED)
+	* RMTPeople		"REPOST MEDIA TARGET BY PEOPLE"		(WORK & TESTED)
+	* RMTHashtag		"REPOST MEDIA TARGET BY HASHTAG"	(WORK & TESTED)
 
 
 <br/>
@@ -132,7 +132,9 @@
     3. + Improvements In Display Program
     4. FFTAUTO & FFT must make file komen.txt and save your comment in there
     5. BOMLIKE & BOMKOMEN if you want unlimited read unli_bom.txt
-    6. FFTSLEEP with random sleep 
+    6. FFTSLEEP with random sleep
+    7. New Feature: RMTPeople  [>] Repost Media Target by People
+    8. New Feature: RMTHashtag [>] Repost Media Target by Hashtag
 <br/>
 
 ## SPECIAL THANKS TO:
