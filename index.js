@@ -29,6 +29,7 @@ const questionTools = [
 	      "[13] Bom Komen Post Target",
         "[14] Repost Media Target by People",
         "[15] Repost Media Target by Hashtag",
+        "[16] Repost Media Target by Link",
         ""
       ] 
   }
@@ -109,6 +110,10 @@ const main = async () => {
       case "[15] Repost Media Target by Hashtag":
         const RMTHashtag = require('./RMTHashtag.js');
         await RMTHashtag();
+        break;
+      case "[16] Repost Media Target by Link":
+        const RMTLink = require('./RMTLink.js');
+        await RMTLink();
         break;
       default:
         console.log('\nERROR:\n[?] Aw, Snap! \n[!] Something went wrong while displaying this program!\n[!] Please try again!');

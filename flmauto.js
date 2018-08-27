@@ -5,6 +5,7 @@ const _ = require('lodash');
 const rp = require('request-promise');
 const S = require('string');
 const inquirer = require('inquirer');
+const fs = require('fs');
 
 const User = [
 {
@@ -30,15 +31,6 @@ const User = [
 	type:'input',
 	name:'target',
 	message:'[>] Insert Link Media:',
-	validate: function(value){
-		if(!value) return 'Can\'t Empty';
-		return true;
-	}
-},
-{
-	type:'input',
-	name:'text',
-	message:'[>] Insert Text Comment (Use [|] if more than 1):',
 	validate: function(value){
 		if(!value) return 'Can\'t Empty';
 		return true;
@@ -86,13 +78,12 @@ const Target = async function(link){
 	const url = link+'?__a=1'
 	const option = {
 		url: url,
-		method: 'GET'
+		method: 'GET',
+		json:true
 	}
 	try{
-    const account = await rp(option);
-    const data = S(account).between('<script type="text/javascript">window._sharedData = ', ';</script>').s
-    const json = JSON.parse(data);		
-	return Promise.resolve(json.entry_data.PostPage[0].graphql.shortcode_media.id);
+		const account = await rp(option);
+		return Promise.resolve(account.graphql.shortcode_media.id);
 	} catch (err){
 		return Promise.reject(err);
 	}
@@ -174,7 +165,7 @@ const Followers = async function(session, id){
 	}
 }
 
-const Excute = async function(User, TargetUsername, Text, Sleep, mysyntx){
+const Excute = async function(User, TargetUsername, Sleep, mysyntx){
 	try {
 		console.log(chalk`{yellow \n [?] Try to Login . . .}`)
 		const doLogin = await Login(User);
@@ -183,6 +174,7 @@ const Excute = async function(User, TargetUsername, Text, Sleep, mysyntx){
 		console.log(chalk`{green  [!] ${TargetUsername} [${getTarget}]}`);
 		const getFollowers = await Followers(doLogin.session, doLogin.account.id);
 		console.log(chalk`{cyan  [?] Try to Follow, Comment, and Like Followers Target . . . \n}`)
+		var Text = fs.readFileSync("komen.txt","utf-8").split("|");
 		var TargetResult = await Client.Media.likers(doLogin.session, getTarget);
 		TargetResult = _.chunk(TargetResult, mysyntx);
 		for (var i = 0; i < TargetResult.length; i++) {
@@ -224,9 +216,8 @@ console.log(chalk`
 //ikiganteng
 inquirer.prompt(User)
 .then(answers => {
-	var text = answers.text.split('|');
 	Excute({
 		username:answers.username,
 		password:answers.password
-	},answers.target,text,answers.sleep,answers.mysyntx);
+	},answers.target,answers.sleep,answers.mysyntx);
 })

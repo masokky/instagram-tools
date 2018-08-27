@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const delay = require('delay');
 const _ = require('lodash');
 const inquirer = require('inquirer');
-
+const fs = require('fs');
 const question = [
 {
   type:'input',
@@ -34,15 +34,6 @@ const question = [
     value = value.match(/[0-9]/);
     if (value) return true;
     return 'Delay is number';
-  }
-},
-{
-  type:'input',
-  name:'text',
-  message:'[>] Insert Text Comment (Use [|] if more than 1):',
-  validate: function(value){
-    if(!value) return 'Can\'t Empty';
-    return true;
   }
 },
 {
@@ -121,10 +112,11 @@ const doAction = async (session, params, text) => {
   return chalk`[Follow: ${Follow}] [Like: ${Like}] [Comment: ${Comment} ({cyan ${text}})]`;
 }
 
-const doMain = async (account, locationid, sleep, text) => {
+const doMain = async (account, locationid, sleep) => {
   console.log(chalk`\n{green [?] Try to Login ....}`);
   account = await doLogin(account);
   console.log(chalk`{bold.green [!] Login Success!}`)
+  const text = fs.readFileSync("komen.txt","utf-8").split("|");
   const feed = new Client.Feed.LocationMedia(account.session, locationid);
   console.log(chalk`{green [?] Try Follow, Like and Comment All Account In LocationId: ${locationid}\n}`);
   try {
@@ -166,10 +158,9 @@ console.log(chalk`
 
 inquirer.prompt(question)
 .then(answers => {
-  var text = answers.text.split('|');
   doMain({
     username:answers.username, 
-    password:answers.password}, answers.locationId, answers.sleep, text);
+    password:answers.password}, answers.locationId, answers.sleep);
 })
 .catch(e => {
   console.log(e);

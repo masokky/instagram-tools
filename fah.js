@@ -5,6 +5,7 @@ const chalk = require('chalk');
 const delay = require('delay');
 const _ = require('lodash');
 const inquirer = require('inquirer');
+const fs = require('fs');
 
 const question = [
 {
@@ -33,25 +34,6 @@ const question = [
   validate: function(value){
     if(!value) return 'Can\'t Empty';
     return true;
-  }
-},
-{
-  type:'input',
-  name:'text',
-  message:'[>] Insert Text Comment (Use [|] if more than 1):',
-  validate: function(value){
-    if(!value) return 'Can\'t Empty';
-    return true;
-  }
-},
-{
-  type:'input',
-  name:'mysyntx',
-  message:'[>] Input Total of Target You Want (ITTYW):',
-  validate: function(value){
-    value = value.match(/[0-9]/);
-    if (value) return true;
-    return 'Use Number Only!';
   }
 },
 {
@@ -130,12 +112,13 @@ const doAction = async (session, params, text) => {
   return chalk`[Follow: ${Follow}] [Like: ${Like}] [Comment: ${Comment} ({cyan ${text}})]`;
 }
 
-const doMain = async (account, hastag, sleep, text, mysyntx) => {
+const doMain = async (account, hastag, sleep, mysyntx) => {
   console.log(chalk`{yellow \n [?] Try to Login . . .}`)
   account = await doLogin(account);
   console.log(chalk`{green [!] Login Success!}`)
    try {
   const ranhastag = hastag[Math.floor(Math.random() * hastag.length)];
+  var text = fs.readFileSync("komen.txt","utf-8").split("|");
   const feed = new Client.Feed.TaggedMedia(account.session, ranhastag);
   console.log(chalk`{cyan  [?] Try to Follow, Like and Comment All Account In Hashtag: #${ranhastag}}`);
     var cursor;
@@ -184,11 +167,10 @@ console.log(chalk`
 
 inquirer.prompt(question)
 .then(answers => {
-  var text = answers.text.split('|');
   var hastag = answers.hastag.split('|');
   doMain({
     username:answers.username, 
-    password:answers.password},hastag,answers.sleep,text,answers.mysyntx);
+    password:answers.password},hastag,answers.sleep,answers.mysyntx);
 })
 .catch(e => {
   console.log(e);
