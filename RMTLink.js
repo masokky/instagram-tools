@@ -142,8 +142,9 @@ async function deleteCover(removeSelf) {
       fs.rmdirSync(dirPath);
 };
 async function parseTag(data,text){
-  text = text.replace(/{target}/,"@"+data.target);
-  text = text.replace(/{me}/,"@"+data.me);
+  text = text.replace(/{target}/g,"@"+data.target);
+  text = text.replace(/{me}/g,"@"+data.me);
+  text = text.replace(/{originalCaption}/g,data.originalCaption);
   return text;
 }
 async function repostMedia(session, mediaType, media, caption){
@@ -177,13 +178,12 @@ const Excute = async function(User, target, customCaption){
  	  var cursor;
  		var media = new Array();
  		let type = feed._params.mediaType;
- 		let caption;
+ 		let caption = feed._params.caption;
  		if(customCaption){
 	 		let data = {target:getTarget.author_name,
-                  me:doLogin.account._params.username};
+                  me:doLogin.account._params.username,
+                  originalCaption:caption};
       caption = await parseTag(data,customCaptionText);
-    }else{
-	 		caption = feed._params.caption;
     }
  		switch(type){
  			case 1:
@@ -216,7 +216,6 @@ const Excute = async function(User, target, customCaption){
  				}
  				break;
  		}
-    // console.log(media);
  		let repost = await repostMedia(doLogin.session, type, media, caption);
  		if(filename) await deleteCover(false);
  		console.log(repost);

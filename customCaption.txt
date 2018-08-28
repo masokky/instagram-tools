@@ -1,11 +1,12 @@
 Repost from {target}
 .
 .
+{originalCaption}
 .
 .
+👉Follow {me}
+👉Follow {me}
+👉Follow {me}
 .
 .
-.
-.
-.
-Follow {me} yahhh
+Mau direpost? DM ya
