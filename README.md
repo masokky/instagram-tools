@@ -116,6 +116,7 @@
 	* cek			"CHECK USERNAME IG TARGET"		(WORK & TESTED)
 	* RMTPeople		"REPOST MEDIA TARGET BY PEOPLE"		(WORK & TESTED)
 	* RMTHashtag		"REPOST MEDIA TARGET BY HASHTAG"	(WORK & TESTED)
+	* RMTLink		"REPOST MEDIA TARGET BY LINK"		(WORK & TESTED)
 
 
 <br/>
@@ -143,3 +144,4 @@
 	* SGB TEAM REBORN
 	* BC0DE.NET | NAONLAH.NET - WingKocoli
 	* Ilyasa Fathur Rahman (Tutorial dari VPS Centos)
+	* RMT BY Mas Okky (@masokky_)
