@@ -73,7 +73,7 @@ const Target = async function(link){
   }
   try{
     const media = await rp(option);
-    return Promise.resolve(media.media_id);
+    return Promise.resolve(media);
   } catch (err){
     return Promise.reject(err);
   }
@@ -141,6 +141,11 @@ async function deleteCover(removeSelf) {
     if (removeSelf)
       fs.rmdirSync(dirPath);
 };
+async function parseTag(data,text){
+  text = text.replace(/{target}/,"@"+data.target);
+  text = text.replace(/{me}/,"@"+data.me);
+  return text;
+}
 async function repostMedia(session, mediaType, media, caption){
 	let repost;
 	let timeNow = new Date();
@@ -166,17 +171,20 @@ const Excute = async function(User, target, customCaption){
     console.log(chalk`{yellow \n [?] Trying to Login . . .}`)
     const doLogin = await Login(User);
     console.log(chalk`{green  [!] Login Success, }{yellow [?] Trying to access URL . . .}`)
-    const getTargetId = await Target(target);
-    var feed = await new Client.Media.getById(doLogin.session, getTargetId);
+    const getTarget = await Target(target);
+    var feed = await new Client.Media.getById(doLogin.session, getTarget.media_id);
     console.log(chalk`{green  [!] Success, Start Trying to Repost Media . . .}`);
  	  var cursor;
  		var media = new Array();
  		let type = feed._params.mediaType;
  		let caption;
- 		if(customCaption)
-	 		caption = customCaptionText;
-	 	else
+ 		if(customCaption){
+	 		let data = {target:getTarget.author_name,
+                  me:doLogin.account._params.username};
+      caption = await parseTag(data,customCaptionText);
+    }else{
 	 		caption = feed._params.caption;
+    }
  		switch(type){
  			case 1:
  				media["data"] = await urlToBuffer(feed._params.images[0].url);
@@ -193,12 +201,14 @@ const Excute = async function(User, target, customCaption){
  					let m = new Array();
  					m["type"] = fileType[carouselMedia[i]._params.mediaType];
  					if(m["type"]=="photo"){
- 						m["size"] = [carouselMedia[i]._params.images[0].width,carouselMedia[i]._params.images[0].height];
+            m["size"] = [1080,1080];
+ 						// m["size"] = [carouselMedia[i]._params.images[0].width,carouselMedia[i]._params.images[0].height];
  						m["data"] = await urlToBuffer(carouselMedia[i]._params.images[0].url);
  					}else{
  						var filename = new Date().getTime()+".jpg";
  						const dlCover = await downloadCover(carouselMedia[i]._params.images[0].url,filename);
- 						m["size"] = [carouselMedia[i]._params.videos[0].width,carouselMedia[i]._params.videos[0].height];
+            m["size"] = [720,720];
+ 						// m["size"] = [carouselMedia[i]._params.videos[0].width,carouselMedia[i]._params.videos[0].height];
  						m["data"] = await urlToBuffer(carouselMedia[i]._params.videos[0].url);
  						m["thumbnail"] = "cover/"+filename;
  					}
@@ -206,10 +216,10 @@ const Excute = async function(User, target, customCaption){
  				}
  				break;
  		}
+    // console.log(media);
  		let repost = await repostMedia(doLogin.session, type, media, caption);
  		if(filename) await deleteCover(false);
  		console.log(repost);
-    // console.log(media);
   } catch (err) {
 	    console.log(err);
   }

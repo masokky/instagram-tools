@@ -135,6 +135,11 @@ async function deleteCover(removeSelf) {
     if (removeSelf)
       fs.rmdirSync(dirPath);
 };
+async function parseTag(data,text){
+  text = text.replace(/{target}/,"@"+data.target);
+  text = text.replace(/{me}/,"@"+data.me);
+  return text;
+}
 async function repostMedia(session, mediaType, media, caption){
 	let repost;
 	let timeNow = new Date();
@@ -173,10 +178,13 @@ const Excute = async function(User, target, customCaption, Sleep){
  				var media = new Array();
  				let type = akun._params.mediaType;
  				let caption;
- 				if(customCaption)
-	 				caption = customCaptionText;
-	 			else
-	 				caption = akun._params.caption;
+ 				if(customCaption){
+          let data = {target:akun.account._params.username,
+                    me:doLogin.account._params.username};
+          caption = await parseTag(data,customCaptionText);
+        }else{
+          caption = akun._params.caption;
+        }
  				switch(type){
  					case 1:
  						media["data"] = await urlToBuffer(akun._params.images[0].url);
@@ -193,12 +201,14 @@ const Excute = async function(User, target, customCaption, Sleep){
  							let m = new Array();
  							m["type"] = fileType[carouselMedia[i]._params.mediaType];
  							if(m["type"]=="photo"){
- 								m["size"] = [carouselMedia[i]._params.images[0].width,carouselMedia[i]._params.images[0].height];
+                m["size"] = [1080,1080];
+ 								// m["size"] = [carouselMedia[i]._params.images[0].width,carouselMedia[i]._params.images[0].height];
  								m["data"] = await urlToBuffer(carouselMedia[i]._params.images[0].url);
  							}else{
  								var filename = new Date().getTime()+".jpg";
  								const dlCover = await downloadCover(carouselMedia[i]._params.images[0].url,filename);
- 								m["size"] = [carouselMedia[i]._params.videos[0].width,carouselMedia[i]._params.videos[0].height];
+ 								m["size"] = [720,720];
+                // m["size"] = [carouselMedia[i]._params.videos[0].width,carouselMedia[i]._params.videos[0].height];
  								m["data"] = await urlToBuffer(carouselMedia[i]._params.videos[0].url);
  								m["thumbnail"] = "cover/"+filename;
  							}
