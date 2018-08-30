@@ -3,7 +3,7 @@
 
 ## How to install (DEFAULT or BASIC USAGE)
 	* git clone https://github.com/asokky/instagram-tools.git
-	* cd bot-igeh
+	* cd instagram-tools
 	* unzip node_modules.zip
 	* ls
 	* Then select the tool you want to use!
@@ -15,8 +15,8 @@
 	* Download NodeJS (https://nodejs.org/en/download/) *Choose .msi & 32bit/64bit
 	* INSTALL GIT for Windows & NodeJS
 	* Download File on Github (https://github.com/asokky/instagram-tools.git)
-	* Extract File bot-igeh and enter the folder
-	* Right Click on Mouse, Then Select "Git Bash Here" (Make sure you are in the bot-igeh folder!!!)
+	* Extract File instagram-tools and enter the folder
+	* Right Click on Mouse, Then Select "Git Bash Here" (Make sure you are in the instagram-tools folder!!!)
 	* Then type: unzip node_modules.zip
 	* To View The Contents Of a folder in bash, type: "ls" (without "")
 	* Then select the tool you want to use!
@@ -29,7 +29,7 @@
 	* pkg install git
 	* pkg install nodejs
 	* git clone https://github.com/asokky/instagram-tools.git
-	* cd bot-igeh
+	* cd instagram-tools
 	* unzip node_modules.zip
 	* ls
 	* Then select the tool you want to use!
@@ -47,7 +47,7 @@
 
 	=========== Basic Usage ==============
 	* git clone https://github.com/asokky/instagram-tools.git
-	* cd bot-igeh
+	* cd instagram-tools
 	* unzip node_modules.zip
 	* ls
 	* Then select the tool you want to use!
@@ -83,7 +83,7 @@
 
 	=========== Basic Usage ==============
 	* git clone https://github.com/asokky/instagram-tools.git
-	* cd bot-igeh
+	* cd instagram-tools
 	* unzip node_modules.zip
 	* nvm use 10.7.0
 	* ls
