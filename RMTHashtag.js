@@ -178,7 +178,7 @@ const Excute = async function(User, target, customCaption, Sleep){
  			await Promise.all(result[i].map(async(akun)=>{
  				var media = new Array();
  				let type = akun._params.mediaType;
-        let caption = akun._params.caption;
+        let caption = akun._params.caption ? akun._params.caption : "";
  				if(customCaption){
           let data = {target:akun.account._params.username,
                       me:doLogin.account._params.username,

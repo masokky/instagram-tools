@@ -178,7 +178,7 @@ const Excute = async function(User, target, customCaption){
  	  var cursor;
  		var media = new Array();
  		let type = feed._params.mediaType;
- 		let caption = feed._params.caption;
+ 		let caption = feed._params.caption ? feed._params.caption: "";
  		if(customCaption){
 	 		let data = {target:getTarget.author_name,
                   me:doLogin.account._params.username,
