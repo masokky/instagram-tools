@@ -249,8 +249,8 @@ const Excute = async function(User, target, customCaption, Sleep){
  			await delay(Sleep);
  		}
  		cursor = await feed.getCursor();
- 		console.log(chalk`{yellow \n [#][>] Delay For ${Sleep/60/1000} Minutes [<][#] \n}`);
- 		await delay(Sleep);
+ 		// console.log(chalk`{yellow \n [#][>] Delay For ${Sleep/60/1000} Minutes [<][#] \n}`);
+ 		// await delay(Sleep);
  	}while(feed.isMoreAvailable());	
   } catch (err) {
 	    console.log(err);
