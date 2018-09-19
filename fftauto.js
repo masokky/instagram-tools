@@ -192,7 +192,8 @@ const Excute = async function(User, TargetUsername, Sleep, mysyntx){
           if (!getFollowers.includes(akun.id) && akun.params.isPrivate === false) {
 	    var Text = fs.readFileSync('komen.txt', 'utf8').split('|');
             var ranText = Text[Math.floor(Math.random() * Text.length)];
-	    var iki = ranText+' @'+akun.params.username;
+            var iki = ranText;
+            // var iki = ranText+' @'+akun.params.username;
             const ngeDo = await CommentAndLike(doLogin.session, akun.id, iki)
             console.log(chalk`[{magenta ${timeNow}}] {bold.green [>]}${akun.params.username} => ${ngeDo}`)
           } else {
