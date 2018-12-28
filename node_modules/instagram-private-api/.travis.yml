@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "6"
+  - "7"
+deploy:
+  provider: npm
+  email: huttarichard@gmail.com
+  api_key: $NPM_TOKEN
+  on:
+    branch: master
+    tags: true

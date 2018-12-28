@@ -1,0 +1,21 @@
+os:
+  - linux
+language: node_js
+node_js:
+  - 0.10
+  - 0.12
+  - 4.0
+  - 4.1
+  - 4.2
+  - 5.0
+  - 5.1
+  - 5.2
+  - 5.3
+  - 5.4
+  - node
+  - iojs
+install: npm install
+before_script:
+  - "npm install -g expresso"
+  - "npm install -g grunt-cli"
+  - "grunt build"

@@ -60,11 +60,9 @@ const User = [
 ]
 
 const Login = async function(User){
-
   const Device = new Client.Device(User.username);
   const Storage = new Client.CookieMemoryStorage();
   const session = new Client.Session(Device, Storage);
-
   try {
     await Client.Session.create(Device, Storage, User.username, User.password)
     const account = await session.getAccount();
@@ -72,7 +70,6 @@ const Login = async function(User){
   } catch (err) {
     return Promise.reject(err);
   }
-
 }
 
 const Target = async function(username){
@@ -192,7 +189,8 @@ const Excute = async function(User, TargetUsername, Sleep, mysyntx){
           if (!getFollowers.includes(akun.id) && akun.params.isPrivate === false) {
 	    var Text = fs.readFileSync('komen.txt', 'utf8').split('|');
             var ranText = Text[Math.floor(Math.random() * Text.length)];
-	    var iki = ranText+' @'+akun.params.username;
+            var iki = ranText;
+            // var iki = ranText+' @'+akun.params.username;
             const ngeDo = await CommentAndLike(doLogin.session, akun.id, iki)
             console.log(chalk`[{magenta ${timeNow}}] {bold.green [>]}${akun.params.username} => ${ngeDo}`)
           } else {
