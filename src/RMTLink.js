@@ -8,7 +8,7 @@ const inquirer = require('inquirer');
 const request = require('request');
 const Promise = require('bluebird');
 const fs = require('fs');
-
+const coverDir = "./src/cover";
 const fileType = {"1":"photo","2":"video","8":"album"};
 const User = [
 {
@@ -122,10 +122,10 @@ async function urlToBuffer(url){
 	})
 }
 async function downloadCover(url,filename){
-	return await request(url).pipe(await fs.createWriteStream('cover/'+filename));
+	return await request(url).pipe(await fs.createWriteStream(coverDir+'/'+filename));
 }
 async function deleteCover(removeSelf) {
-    let dirPath = "cover";
+    let dirPath = coverDir;
     if (removeSelf === undefined)
     	removeSelf = true;
     try { var files = fs.readdirSync(dirPath); }
@@ -168,7 +168,7 @@ async function repostMedia(session, mediaType, media, caption){
 }
 const Excute = async function(User, target, customCaption){
   try {
-  	const customCaptionText = fs.readFileSync("customCaption.txt","utf-8");
+  	const customCaptionText = fs.readFileSync("./customCaption.txt","utf-8");
     console.log(chalk`{yellow \n [?] Trying to Login . . .}`)
     const doLogin = await Login(User);
     console.log(chalk`{green  [!] Login Success, }{yellow [?] Trying to access URL . . .}`)
@@ -193,7 +193,7 @@ const Excute = async function(User, target, customCaption){
  				media["data"] = await urlToBuffer(feed._params.videos[0].url);
  				var filename = new Date().getTime()+".jpg";
  				const dlCover = await downloadCover(feed._params.images[0].url,filename);
- 				media["thumbnail"] = "cover/"+filename;
+ 				media["thumbnail"] = coverDir+"/"+filename;
  				break;
  			case 8:
  				let carouselMedia = feed._params.carouselMedia;
@@ -210,7 +210,7 @@ const Excute = async function(User, target, customCaption){
             m["size"] = [720,720];
  						// m["size"] = [carouselMedia[i]._params.videos[0].width,carouselMedia[i]._params.videos[0].height];
  						m["data"] = await urlToBuffer(carouselMedia[i]._params.videos[0].url);
- 						m["thumbnail"] = "cover/"+filename;
+ 						m["thumbnail"] = coverDir+"/"+filename;
  					}
  					await media.push(m);
  				}

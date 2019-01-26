@@ -1,11 +1,11 @@
 {
-  "name": "instagram",
-  "version": "1.0.0",
-  "description": "Instagram Unfollow Not FollowBack",
+  "name": "instagram-tools",
+  "version": "0.2.0",
+  "description": "Node.JS Instagram Tools",
   "main": "index.js",
   "dependencies": {
     "bluebird": "^3.5.3",
-    "chalk": "^2.4.1",
+    "chalk": "^2.4.2",
     "cron": "^1.6.0",
     "delay": "^2.0.0",
     "inquirer": "^4.0.2",
@@ -15,5 +15,10 @@
     "request-promise": "^4.2.2",
     "string": "^3.3.3"
   },
-  "author": "CCOCOT"
+  "author": "Mas Okky",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/masokky/instagram-tools"
+  },
+  "license": "MIT"
 }
