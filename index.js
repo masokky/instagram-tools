@@ -59,7 +59,7 @@ const main = async () => {
     toolChoise = toolChoise.Tools;
     switch(toolChoise){
       case "[1]  Bot Like Timeline":
-        await require("./src/botLikeTimeline.js");
+        await require("./src/botLikeTimeline.js	");
         break;
       case "[2]  Follow Followers Target by People":
         await require("./src/FFTPeople.js");
@@ -111,6 +111,9 @@ const main = async () => {
         break;
       case "[18] Delete All Media":
         await require("./src/deleteAllMedia.js");
+        break;
+      case "[18] Like All Media":
+        await require("./src/botlike2.js");
         break;
       default:
         console.log('\nERROR:\n[?] Aw, Snap! \n[!] Something went wrong while displaying this program!\n[!] Please try again!');
