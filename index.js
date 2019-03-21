@@ -47,6 +47,7 @@ const questionTools = [
         "[16] Unfollow Not Followback",
         "[17] Unfollow All Following",
         "[18] Delete All Media",
+	"[19] Like All Media",
         ""
       ] 
   }
@@ -112,7 +113,7 @@ const main = async () => {
       case "[18] Delete All Media":
         await require("./src/deleteAllMedia.js");
         break;
-      case "[18] Like All Media":
+      case "[19] Like All Media":
         await require("./src/botlike2.js");
         break;
       default:
