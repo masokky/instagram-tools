@@ -91,7 +91,7 @@ test('wrap called with no arguments', function (t) {
   var mock = sinon.expectation
     .create('logger')
     .twice()
-  shimmer({logger: mock})
+  shimmer({ logger: mock })
 
   t.doesNotThrow(function () {
     shimmer.massWrap()
@@ -109,7 +109,7 @@ test('wrap called with module but nothing else', function (t) {
     .create('logger')
     .withExactArgs('must provide one or more functions to wrap on modules')
     .once()
-  shimmer({logger: mock})
+  shimmer({ logger: mock })
 
   t.doesNotThrow(function () {
     shimmer.massWrap(generator)
@@ -126,7 +126,7 @@ test('wrap called with original but no wrapper', function (t) {
   var mock = sinon.expectation
     .create('logger')
     .twice()
-  shimmer({logger: mock})
+  shimmer({ logger: mock })
 
   t.doesNotThrow(function () {
     shimmer.massWrap(generator, ['inc'])
@@ -144,10 +144,10 @@ test('wrap called with non-function original', function (t) {
     .create('logger')
     .withExactArgs('must provide one or more functions to wrap on modules')
     .once()
-  shimmer({logger: mock})
+  shimmer({ logger: mock })
 
   t.doesNotThrow(function () {
-    shimmer.massWrap({orange: 'slices'}, 'orange', function () {})
+    shimmer.massWrap({ orange: 'slices' }, 'orange', function () {})
   }, "wrapping non-function original doesn't throw")
 
   t.doesNotThrow(function () {
@@ -162,10 +162,10 @@ test('wrap called with non-function wrapper', function (t) {
     .create('logger')
     .withArgs('must provide one or more functions to wrap on modules')
     .once()
-  shimmer({logger: mock})
+  shimmer({ logger: mock })
 
   t.doesNotThrow(function () {
-    shimmer.massWrap({orange: function () {}}, 'orange', 'hamchunx')
+    shimmer.massWrap({ orange: function () {} }, 'orange', 'hamchunx')
   }, "wrapping with non-function wrapper doesn't throw")
 
   t.doesNotThrow(function () {

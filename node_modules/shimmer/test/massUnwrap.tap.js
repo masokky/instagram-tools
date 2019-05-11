@@ -56,7 +56,7 @@ test("shouldn't throw on double unwrapping", function (t) {
   t.equal(anticounter, generator.dec, 'basic function equality testing should work')
 
   var mock = sinon.stub()
-  shimmer({logger: mock})
+  shimmer({ logger: mock })
 
   function wrapper (original) {
     return function () {
@@ -93,7 +93,7 @@ test('massUnwrap called with no arguments', function (t) {
   var mock = sinon.expectation
     .create('logger')
     .twice()
-  shimmer({logger: mock})
+  shimmer({ logger: mock })
 
   t.doesNotThrow(function () { shimmer.massUnwrap() }, 'should log instead of throwing')
 
@@ -109,7 +109,7 @@ test('massUnwrap called with module but nothing else', function (t) {
     .create('logger')
     .withExactArgs('must provide one or more functions to unwrap on modules')
     .once()
-  shimmer({logger: mock})
+  shimmer({ logger: mock })
 
   t.doesNotThrow(function () {
     shimmer.massUnwrap(generator)

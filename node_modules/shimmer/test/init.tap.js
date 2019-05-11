@@ -16,7 +16,7 @@ test('shimmer initialization', function (t) {
     .once()
 
   t.doesNotThrow(function () {
-    shimmer({logger: mock})
+    shimmer({ logger: mock })
   }, "initializer doesn't throw")
 
   t.doesNotThrow(function () {
@@ -36,10 +36,10 @@ test('shimmer initialized with non-function logger', function (t) {
     .withArgs("new logger isn't a function, not replacing")
     .once()
 
-  shimmer({logger: mock})
+  shimmer({ logger: mock })
 
   t.doesNotThrow(function () {
-    shimmer({logger: {ham: 'chunx'}})
+    shimmer({ logger: { ham: 'chunx' } })
   }, "even bad initialization doesn't throw")
 
   t.doesNotThrow(function () {
