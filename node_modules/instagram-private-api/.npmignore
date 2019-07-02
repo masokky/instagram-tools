@@ -1,7 +1,0 @@
-node_modules
-.vscode/
-.DS_Store
-npm-debug.log
-tests/tmp/*
-tests/credentials.json
-tests/cookies/*

@@ -9,15 +9,17 @@ Instagram Private NODE.JS API
 [![Join the chat at https://gitter.im/instagram-private-api/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/instagram-private-api/Lobby)
 
 ----
+Original author of this library is [Richard Hutta](https://github.com/huttarichard). Thanks to him for starting it. 
 
-*Carefully consider using this library. I’m no longer maintaining the repository.*
-
-Community is taking care of development and new features. Thanks to: @IvanMMM @SergeyMihrjakov @dilame @sebyddd @hieven
+Community is taking care of development and new features. Thanks to: @IvanMMM @SergeyMihrjakov @sebyddd @hieven
 
 ----
 
-**Installation**
+### Work In Progress
 
+Now I'm rewriting this library to TypeScript, sometimes it's impossible to keep backwards compatibility.
+Any help is highly appreciated. Feel free to send PRs.
+### Installation
 
 You can install this by using npm:
 ```
@@ -210,7 +212,7 @@ The Session class is actually gluing any instance of `CookieStorage` and `Device
 Every request to Instagram must be chained with proper headers and data,
 in order to make endpoints work.
 For example every endpoint requires a proper `User-Agent` header in
-order to verify signature or `X-CSFR-Token` | `_csrftoken` to verify that you
+order to verify signature or `X-CSRF-Token` | `_csrftoken` to verify that you
 are doing request intentionally.
 
 
@@ -279,7 +281,7 @@ session.getAccount()
 
 You can instantize new class, which will be able to represent it self as a device
 you are using to access instagram. By default it will generate device
-from list of devices (can be found at `client/v1/devices.json`).
+from list of devices (can be found at `src/devices/devices.json`).
 
 Reason for username in arguments is that you need to have same device
 for same user every time when you access instagram API. This is done through

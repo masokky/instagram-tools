@@ -1,6 +1,6 @@
-/* globals angular, sprintf, vsprintf */
+/* global angular, sprintf, vsprintf */
 
-(function () {
+!function() {
     'use strict'
 
     angular.
@@ -21,4 +21,4 @@
         filter('vfmt', ['$filter', function($filter) {
             return $filter('vsprintf')
         }])
-})();
+}(); // eslint-disable-line
