@@ -76,7 +76,7 @@ const Excute = async function(User, sleep){
         var cursor;
         do {
             if (cursor) feed.setCursor(cursor);
-            var media = await feed.get();
+            var media = await feed.get(1);
             media = _.chunk(media, 10);
             for (var i = 0; i < media.length; i++) {
                 await Promise.all(media[i].map(async (media) => {
