@@ -111,7 +111,7 @@ const doMain = async (User, hastag, sleep, accountsPerDelay) => {
     console.log(chalk`{yellow \n [?] Try to Login . . .}`)
     var account = await doLogin(User);
     console.log(chalk`{green [!] Login Success!}`)
-    const feed = new Client.Feed.TaggedMedia(account.session, hastag);
+    const feed = await new Client.Feed.TaggedMedia(account.session, hastag);
     console.log(chalk`{cyan  [?] Like and Comment All Account In Hashtag: #${hastag}}`);
     var cursor;
     var count = 0;

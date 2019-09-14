@@ -151,7 +151,7 @@ const CommentAndLike = async function(session, accountId, text){
 };
 
 const Followers = async function(session, id){
-  const feed = new Client.Feed.AccountFollowers(session, id);
+  const feed = await new Client.Feed.AccountFollowers(session, id);
   try{
     const Pollowers = [];
     var cursor;
@@ -179,7 +179,7 @@ const Excute = async function(User, TargetUsername, Sleep, accountsPerDelay){
     console.log(chalk`{green  [!] ${TargetUsername}: [${getTarget.id}] | Followers: [${getTarget.followers}]}`)
     const getFollowers = await Followers(doLogin.session, doLogin.account.id)
     console.log(chalk`{cyan  [?] Try to Follow, Comment, and Like Followers Target . . . \n}`)
-    const Targetfeed = new Client.Feed.AccountFollowers(doLogin.session, getTarget.id);
+    const Targetfeed = await new Client.Feed.AccountFollowers(doLogin.session, getTarget.id);
     var TargetCursor;
     do {
       if (TargetCursor) Targetfeed.setCursor(TargetCursor);
