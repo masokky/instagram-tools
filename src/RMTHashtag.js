@@ -179,7 +179,7 @@ const Excute = async function(User, target, startFrom, customCaption, Sleep){
     console.log(chalk`{green  [!] Login Success! }`)
     console.log(chalk`{green  [!] Start Trying to Repost Media . . .}`);
  	  var cursor;
- 	  var feed = new Client.Feed.TaggedMedia(doLogin.session, target);
+ 	  var feed = await new Client.Feed.TaggedMedia(doLogin.session, target);
     var currentMediaIndex = startFrom;
     var mediaIndex = 0;
     var post = false;
@@ -196,39 +196,39 @@ const Excute = async function(User, target, startFrom, customCaption, Sleep){
           }
           if(post){
  	  			 var media = new Array();
- 	  			 let type = akun._params.mediaType;
-            let caption = akun._params.caption ? akun._params.caption : "";
+ 	  			 let type = akun.media_type;
+            let caption = akun.caption.text ? akun.caption.text : "";
  	  			 if(customCaption){
-              let data = {target:akun.account._params.username,
-                          me:doLogin.account._params.username,
+              let data = {target:akun.user.username,
+                          me:User.username,
                          originalCaption:caption};
               caption = await parseTag(data,customCaptionText);
             }
  	  			 switch(type){
  	  			 	case 1:
- 	  			 		media["data"] = await urlToBuffer(akun._params.images[0].url);
+ 	  			 		media["data"] = await urlToBuffer(akun.image_versions2[0].url);
  	  			 		break;
  	  			 	case 2:
- 	  			 		media["data"] = await urlToBuffer(akun._params.videos[0].url);
+ 	  			 		media["data"] = await urlToBuffer(akun.video_versions[0].url);
  	  			 		var filename = new Date().getTime()+".jpg";
- 	  			 		const dlCover = await downloadCover(akun._params.images[0].url,filename);
+ 	  			 		const dlCover = await downloadCover(akun.image_versions2[0].url,filename);
  	  			 		media["thumbnail"] = coverDir+"/"+filename;
  	  			 		break;
  	  			 	case 8:
- 	  			 		let carouselMedia = akun._params.carouselMedia;
+ 	  			 		let carouselMedia = akun.carousel_media;
  	  			 		for(let i=0;i<carouselMedia.length;i++){
  	  			 			let m = new Array();
- 	  			 			m["type"] = fileType[carouselMedia[i]._params.mediaType];
+ 	  			 			m["type"] = fileType[carouselMedia[i].media_type];
  	  			 			if(m["type"]=="photo"){
                     m["size"] = [1080,1080];
  	  			 				// m["size"] = [carouselMedia[i]._params.images[0].width,carouselMedia[i]._params.images[0].height];
- 	  			 				m["data"] = await urlToBuffer(carouselMedia[i]._params.images[0].url);
+ 	  			 				m["data"] = await urlToBuffer(carouselMedia[i].image_versions2[0].url);
  	  			 			}else{
  	  			 				var filename = new Date().getTime()+".jpg";
- 	  			 				const dlCover = await downloadCover(carouselMedia[i]._params.images[0].url,filename);
+ 	  			 				const dlCover = await downloadCover(carouselMedia[i].image_versions2[0].url,filename);
  	  			 				m["size"] = [720,720];
                     // m["size"] = [carouselMedia[i]._params.videos[0].width,carouselMedia[i]._params.videos[0].height];
- 	  			 				m["data"] = await urlToBuffer(carouselMedia[i]._params.videos[0].url);
+ 	  			 				m["data"] = await urlToBuffer(carouselMedia[i].video_versions[0].url);
  	  			 				m["thumbnail"] = coverDir+"/"+filename;
  	  			 			}
  	  			 			await media.push(m);
