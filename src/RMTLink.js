@@ -173,9 +173,10 @@ const Excute = async function(User, target, customCaption){
     const doLogin = await Login(User);
     console.log(chalk`{green  [!] Login Success, }{yellow [?] Trying to access URL . . .}`)
     const getTarget = await Target(target);
-    var feed = await new Client.Media.getById(doLogin.session, getTarget.media_id);
+    var feed = await Client.Media.getById(doLogin.session, getTarget.media_id);
     console.log(chalk`{green  [!] Success, Start Trying to Repost Media . . .}`);
- 	  var cursor;
+ 	  // console.log(feed._params.videos);
+    var cursor;
  		var media = new Array();
  		let type = feed._params.mediaType;
  		let caption = feed._params.caption ? feed._params.caption: "";
