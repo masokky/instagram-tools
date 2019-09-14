@@ -55,7 +55,7 @@ const Login = async function(User){
 }
 
 const Media = async function(session, id){
-	const Media = new Client.Feed.UserMedia(session, id);
+	const Media = await new Client.Feed.UserMedia(session, id);
 
 	try {
 		const Poto = [];
