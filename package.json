@@ -13,12 +13,18 @@
     "moment-timezone": "^0.5.25",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "string": "^3.3.3"
+    "string": "^3.3.3",
+    "snyk": "^1.226.2"
   },
   "author": "Mas Okky",
   "repository": {
     "type": "git",
     "url": "https://github.com/masokky/instagram-tools"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true
 }
