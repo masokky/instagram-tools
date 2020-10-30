@@ -82,20 +82,21 @@ const grabFollowers = async (session, id) => {
   }
 }
 
+const grabFollowing = async (session, id) => {
+  const feed = new Client.Feed.AccountFollowing(session, id);
+  try{
+    feed.map = item => item.params;
+    return Promise.resolve(feed.all());
+  }catch (e){
+    return Promise.reject(err);
+  }
+}
+
 const doFollow = async (session, id) => {
   try {
     await Client.Relationship.create(session, id);
     return true;
   } catch (e) {
-    return false;
-  }
-}
-
-const doComment = async (session, id, text) => {
-  try {
-    await Client.Comment.create(session, id, text);
-    return true;
-  } catch(e){
     return false;
   }
 }
@@ -109,26 +110,30 @@ const doLike = async (session, id) => {
   }
 }
 
-const doAction = async (session, params, text) => {
+const doAction = async (session, params) => {
   const task = [
   doFollow(session, params.account.id),
-  doLike(session, params.id),
-  doComment(session, params.id, text)
+  doLike(session, params.id)
   ];
-  var [printFollow,printLike,printComment] = await Promise.all(task);
+  var [printFollow,printLike] = await Promise.all(task);
   printFollow = printFollow ? chalk`{bold.green Follow}` : chalk`{bold.red Follow}`;
-  printComment = printComment ? chalk`{bold.green Comment}` : chalk`{bold.red Comment}`;
   printLike = printLike ? chalk`{bold.green Like}` : chalk`{bold.red Like}`;
-  return chalk`{bold.green ${printFollow},${printComment},${printLike} [${text}]}`;
+  return chalk`{bold.green ${printFollow},${printLike}}`;
 }
 
 const doMain = async (User, hastag, sleep, accountsPerDelay) => {
   console.log(chalk`{yellow \n [?] Try to Login . . .}`)
   var account = await doLogin(User);
+  
   console.log(chalk`{green  [!] Login Success!}`)
   try {
+	
+	var followers = (await grabFollowers(account.session, account.account.id)).map(f=>f.username);
+	console.log(chalk`{green  [!] Received ${followers.length} followers}`)
+	var following = (await grabFollowing(account.session, account.account.id)).map(f=>f.username);
+	console.log(chalk`{green  [!] Received ${following.length} following}`)
+	
   const ranhastag = hastag[Math.floor(Math.random() * hastag.length)];
-  var text = fs.readFileSync("./commentText.txt","utf-8").split("|");
   const feed = new Client.Feed.TaggedMedia(account.session, ranhastag);
   console.log(chalk`{cyan  [?] Try to Follow, Like and Comment All Account In Hashtag: #${ranhastag}}`);
     var cursor;
@@ -142,9 +147,15 @@ const doMain = async (User, hastag, sleep, accountsPerDelay) => {
         var timeNow = new Date();
         timeNow = `${timeNow.getHours()}:${timeNow.getMinutes()}:${timeNow.getSeconds()}`
         await Promise.all(media.map(async(media)=>{
-          const ranText = text[Math.floor(Math.random() * text.length)];
-          const resultAction = await doAction(account.session, media.params, ranText);
-          console.log(chalk`[{magenta ${timeNow}}] {cyanBright @${media.params.account.username}} => ${resultAction}`);
+			if(followers.includes(media.params.account.username)){
+				console.log(chalk`[{magenta ${timeNow}}] {cyanBright @${media.params.account.username}} => {magenta SKIPPING - Already Following me}`);
+			}else if(following.includes(media.params.account.username)){
+				console.log(chalk`[{magenta ${timeNow}}] {cyanBright @${media.params.account.username}} => {magenta SKIPPING - Already Following them}`);
+			}else{
+				following.push(media.params.account.username);
+				const resultAction = await doAction(account.session, media.params);
+				console.log(chalk`[{magenta ${timeNow}}] {cyanBright @${media.params.account.username}} => ${resultAction}`);
+			}
         }))
         console.log(chalk`{yellow \n [#][>][{cyan Account: ${User.username}}][{cyan Target: #${hastag}}] Delay For ${sleep} MiliSeconds [<][#] \n}`)
         await delay(sleep);

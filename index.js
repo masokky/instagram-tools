@@ -47,6 +47,7 @@ const questionTools = [
         "[16] Unfollow Not Followback",
         "[17] Unfollow All Following",
         "[18] Delete All Media",
+		"[19] Follow Followers Target by Hastag",
         ""
       ] 
   }
@@ -112,6 +113,9 @@ const main = async () => {
       case "[18] Delete All Media":
         await require("./src/deleteAllMedia.js");
         break;
+	  case "[19] Follow Followers Target by Hastag":
+	    await require("./src/FFTHashtag-noComment");
+		break;
       default:
         console.log('\nERROR:\n[?] Aw, Snap! \n[!] Something went wrong while displaying this program!\n[!] Please try again!');
     }
