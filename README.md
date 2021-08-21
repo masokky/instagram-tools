@@ -1,3 +1,9 @@
+----
+
+Sorry, because of any updates from Instagram, this repo will not work properly and soon will be depracated. So I decide to archive, and maybe next i'll develop this with new version. See ya
+
+----
+
 # ![Image](Instagram2016_white-(64px).png) Node.JS Instagram Tools
 
 
