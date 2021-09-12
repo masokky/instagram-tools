@@ -1,0 +1,3 @@
+src/cover/*
+.vscode/*
+node_modules/*
