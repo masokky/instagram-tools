@@ -50,18 +50,23 @@ const User = [
 }
 ]
 const Login = async function(User){
+	const canReachServer = await isReachable('instagram.com');
+	
+	if (!canReachServer) {
+		return Promise.reject("Can't connect to the server");
+	}
 
-  const Device = new Client.Device(User.username);
-  const Storage = new Client.CookieMemoryStorage();
-  const session = new Client.Session(Device, Storage);
+	const Device = new Client.Device(User.username);
+	const Storage = new Client.CookieMemoryStorage();
+	const session = new Client.Session(Device, Storage);
 
-  try {
-    await Client.Session.create(Device, Storage, User.username, User.password)
-    const account = await session.getAccount();
-    return Promise.resolve({session,account});
-  } catch (err) {
-    return Promise.reject(err);
-  }
+	try {
+		await Client.Session.create(Device, Storage, User.username, User.password)
+		const account = await session.getAccount();
+		return Promise.resolve({session,account});
+	} catch (err) {
+		return Promise.reject(err);
+	}
 
 }
 const Target = async function(link){
