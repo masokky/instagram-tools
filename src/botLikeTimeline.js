@@ -40,6 +40,12 @@ const User = [
 
 const Login = async function(User){
 
+    const canReachServer = await isReachable('instagram.com');
+	
+	if (!canReachServer) {
+		return Promise.reject("Can't connect to the server");
+	}
+
     /** Save Account **/
     const Device = new Client.Device(User.username);
     const Storage = new Client.CookieMemoryStorage();
