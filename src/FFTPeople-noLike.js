@@ -111,7 +111,7 @@ const getAllItemsFromFeed = async (feed) => {
   return items;
 };
 
-const Excute = async function (User, TargetUsername, Sleep, accountsPerDelay) {
+const Excute = async (User, TargetUsername, Sleep, accountsPerDelay) => {
   try {
     Sleep *= 1000;
     console.log(chalk`{yellow \n [?] Try to Login . . .}`);
