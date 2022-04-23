@@ -48,7 +48,7 @@ const User = [
   {
     type: "input",
     name: "sleep",
-    message: "[>] Insert Sleep (MiliSeconds):",
+    message: "[>] Insert Sleep (Seconds):",
     validate: function (value) {
       value = value.match(/[0-9]/);
       if (value) return true;
