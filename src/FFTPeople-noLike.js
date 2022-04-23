@@ -131,7 +131,7 @@ const Excute = async (User, TargetUsername, Sleep, accountsPerDelay) => {
         timeNow = `${timeNow.getHours()}:${timeNow.getMinutes()}:${timeNow.getSeconds()}`;
         await Promise.all(
           getTargetFollowers[i].map(async (account) => {
-            if (!getMyFollowers.includes(account.id) && account.is_private === false) {
+            if (!getMyFollowers.includes(account.pk) && account.is_private === false) {
               let commentTexts = fs.readFileSync("commentText.txt", "utf8").split("|");
               let randomCommentTexts = commentTexts[Math.floor(Math.random() * commentTexts.length)];
               const runBot = await instagramBot(account.pk, randomCommentTexts);
