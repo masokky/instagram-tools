@@ -10,7 +10,7 @@
     "delay": "^2.0.0",
     "inquirer": "^4.0.2",
     "instagram-private-api": "^0.10.1",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.35",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "string": "^3.3.3"
