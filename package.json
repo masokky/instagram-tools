@@ -6,11 +6,11 @@
   "dependencies": {
     "bluebird": "^3.5.4",
     "chalk": "^2.4.2",
-    "cron": "^1.7.1",
+    "cron": "^2.0.0",
     "delay": "^2.0.0",
-    "inquirer": "^4.0.2",
-    "instagram-private-api": "^0.10.1",
-    "moment-timezone": "^0.5.25",
+    "inquirer": "^9.0.0",
+    "instagram-private-api": "^1.43.1",
+    "moment-timezone": "^0.5.41",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "string": "^3.3.3"
